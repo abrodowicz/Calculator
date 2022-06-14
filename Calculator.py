@@ -39,40 +39,42 @@ def divide(x, y):
             return x / y
 
 
-def getFirstNumber():
+def getNumber():
     while True:
-        firstNumber = input("Enter your first number: ")
-        if firstNumber == 'q':
+        number = (input("Enter your number: ")).replace(" ", "")
+        if number == 'q':
+            print("You quit calculator!")
             sys.exit()
-        elif int(firstNumber):
-            return firstNumber
-        else:
+        try:
+            number = float(number)
+            return number
+        except ValueError:
             print("This input is invalid. Try again!")
-    getOperator()
 
 
 def getOperator():
     while True:
         operator = input("Enter your operator: ")
         if operator == 'q':
+            print("You quit calculator!")
             sys.exit()
         elif operator in ('+', '-', '*', '/'):
             return operator
         else:
             print("This operator is invalid. Try again!")
-    getSecondNumber()
 
 
-def getSecondNumber():
-    while True:
-        secondNumber = input("Enter your second number: ")
-        if secondNumber == 'q':
-            sys.exit()
-        elif int(secondNumber):
-            return secondNumber
-        else:
-            print("This input is invalid. Try again!")
-    calculate()
+# def getSecondNumber():
+#     while True:
+#         secondNumber = input("Enter your second number: ")
+#         if secondNumber == 'q':
+#             print("You quit calculator!")
+#             sys.exit()
+#         try:
+#             secondNumber = float(secondNumber)
+#             return secondNumber
+#         except ValueError:
+#             print("This input is invalid. Try again!")
 
 
 def again():
@@ -86,13 +88,15 @@ def again():
         elif next_calculation == 'q':
             print("You quit calculator!")
             sys.exit()
+        else:
+            print("This input is invalid. Try again!")
 
 
 def calculate():
     while True:
-        x = int(getFirstNumber())
+        x = float(getNumber())
         operator = getOperator()
-        y = int(getSecondNumber())
+        y = float(getNumber())
         if operator == '+':
             print(x, "+", y, "=", round((add(x, y)), 3))
         elif operator == '-':
@@ -102,7 +106,7 @@ def calculate():
         elif operator == '/':
             print(x, "/", y, "=", round((divide(x, y)), 3))
         else:
-            sys.exit()
+            print("Something is wrong. Try again")
         again()
 
 
