@@ -94,9 +94,9 @@ def again():
 
 def calculate():
     while True:
-        x = float(getNumber())
+        x = getNumber()
         operator = getOperator()
-        y = float(getNumber())
+        y = getNumber()
         if operator == '+':
             print(x, "+", y, "=", round((add(x, y)), 3))
         elif operator == '-':
