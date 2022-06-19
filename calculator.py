@@ -39,9 +39,9 @@ def divide(x, y):
             return x / y
 
 
-def getNumber():
+def getNumber(variable_alias: str) -> float:
     while True:
-        number = (input("Enter your number: ")).replace(" ", "")
+        number = (input(f"Enter your number {variable_alias}: ")).replace(" ", "").replace(",", ".")
         if number == 'q':
             print("You quit calculator!")
             sys.exit()
@@ -64,19 +64,6 @@ def getOperator():
             print("This operator is invalid. Try again!")
 
 
-# def getSecondNumber():
-#     while True:
-#         secondNumber = input("Enter your second number: ")
-#         if secondNumber == 'q':
-#             print("You quit calculator!")
-#             sys.exit()
-#         try:
-#             secondNumber = float(secondNumber)
-#             return secondNumber
-#         except ValueError:
-#             print("This input is invalid. Try again!")
-
-
 def again():
     while True:
         next_calculation = input("Do you want do next calculation? (yes/no): ")
@@ -94,9 +81,9 @@ def again():
 
 def calculate():
     while True:
-        x = getNumber()
+        x = getNumber("X")
         operator = getOperator()
-        y = getNumber()
+        y = getNumber("Y")
         if operator == '+':
             print(x, "+", y, "=", round((add(x, y)), 3))
         elif operator == '-':
@@ -110,6 +97,11 @@ def calculate():
         again()
 
 
-welcome()
-instruction()
-calculate()
+def main():
+    welcome()
+    instruction()
+    calculate()
+
+
+if __name__ == '__main__':
+    main()
