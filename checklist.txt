@@ -1,0 +1,31 @@
+Calculator testing checklist:
+- Check if calculator greet an user
+- Check if calculator provide an instruction
+- Check input validation- positive scenarios:
+a) decimal number
+b) negative number
+c) input with space
+d) input with coma
+- Check input validation- negative scenario
+- Check operator validation- positive scenario
+- Check operator validation- negative scenario
+- Check the addition of two positive integers- positive scenario
+- Check the addition of two negative integers- positive scenario
+- Check the addition of one positive and one negative integer- positive scenario
+- Check the addition of two integers- negative scenario
+- Check the subtraction of two positive integers- positive scenario
+- Check the subtraction of two negative integers- positive scenario
+- Check the subtraction of one positive and one negative integer- positive scenario
+- Check the subtraction of two integers- negative scenario
+- Check the multiplication of two positive integers- positive scenario
+- Check the multiplication of two negative integers- positive scenario
+- Check the multiplication of one positive and one negative integer- positive scenario
+- Check the multiplication of two integers- negative scenario
+- Check the division of two positive  integers- positive scenario
+- Check the division of two negative integers- positive scenario
+- Check the division of one positive and one negative integer- positive scenario
+- Check the division of two integers- negative scenario
+- Check the division of a number by 0
+- Check if result is rounded to 3 decimals
+- Check if user can exit calculator by typing “q”
+- Check if calculator says goodbye to an user
