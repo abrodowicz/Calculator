@@ -6,20 +6,31 @@ class TestCalculator(unittest.TestCase):
 
     #Check if calculator greet an user/ doesn't work :(
     def test_greeting_display(self):
-        greeting = calculator.welcome
-        self.assertEqual(greeting, "Hello! This is your calculator.")
+        self.assertEqual(calculator.welcome(), "Hello! This is your calculator.")
 
     #Check if calculator provide an instruction
-    ?
-
-    # Check input validation -> want to write a test for getNumber function but don't know how to handle variable_alias
-    ?
+    def test_instruction_display(self):
+        self.assertEqual(calculator.instruction(), """
+This calculator works on two numbers.
+You can perform actions from list below:
+Adding-> +
+Subtracting-> -
+Multiplying-> *
+Dividing-> /
+To quit the program enter 'q'
+Let's start!
+    """)
 
     #Check operator validation- positive scenario
-    ?
+
 
     #Check operator validation- negative scenario
-    ?
+
+
+    #Check if inputs can be decimal numbers
+    def test_inputs_validation_1(self):
+        result = calculator.add(m, n)
+        self.assertNotEqual(result, 10)
 
     #Check the addition of two positive integers- positive scenario
     def test_add_method_1(self):
@@ -104,13 +115,13 @@ class TestCalculator(unittest.TestCase):
     #Check the division of a number by 0/ this one doesn't work :(
     def test_divide_by_zero_method(self):
         result = calculator.divide(10, 0)
-        self.assertRaises(ZeroDivisionError, result)
+        self.assertEqual("The divisor must not be zero", result)
 
     #Check if result is rounded to 3 decimals
-    ?
+    def test_rounding_result_method(self):
+        print(divide(1,3))
+
 
     #Check if user can exit calculator by typing “q”
-    ?
 
     #Check if calculator says goodbye to an user
-    ?

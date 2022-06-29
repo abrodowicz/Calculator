@@ -2,11 +2,13 @@ import sys
 
 
 def welcome():
-    print("Hello! This is your calculator.")
+    greeting_text = "Hello! This is your calculator."
+    print(greeting_text)
+    return greeting_text
 
 
 def instruction():
-    print("""
+    information_text = """
 This calculator works on two numbers.
 You can perform actions from list below:
 Adding-> +
@@ -15,7 +17,9 @@ Multiplying-> *
 Dividing-> /
 To quit the program enter 'q'
 Let's start!
-    """)
+    """
+    print(information_text)
+    return information_text
 
 
 def add(x, y):
@@ -37,6 +41,7 @@ def divide(x, y):
             again()
         else:
             return x / y
+
 
 
 def getNumber(variable_alias: str) -> float:
@@ -98,9 +103,11 @@ def calculate():
 
 
 def main():
-    welcome()
-    instruction()
+    welcome_text = welcome()
+    instruction_text = instruction()
     calculate()
+    return welcome_text
+    return instruction_text
 
 
 if __name__ == '__main__':
