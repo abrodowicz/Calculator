@@ -1,13 +1,13 @@
 This is a project of a simple console calculator using python.
 
-###This calculator performs action from list below:
+### This calculator performs action from list below:
 - Summarize
 - Subtraction
 - Multiplication
 - Division
 It works for two numbers (decimal numbers can be used).
 
-###Preconditions:
+### Preconditions:
 You need to have installed actual version of python3 and pipenv. 
 To do it follow instructions below:
 1. Open terminal
@@ -17,7 +17,7 @@ To do it follow instructions below:
 4. Install Pipenv with the command: `brew install pipenv`
 
 
-###To use this terminal calculator follow instructions below:
+### To use this terminal calculator follow instructions below:
 1) Open a terminal
 2) Go to location where you want to clone this calculator code
 3) Run `git clone https://github.com/abrodowicz/Calculator` to clone this repository
