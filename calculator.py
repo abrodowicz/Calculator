@@ -70,18 +70,6 @@ def getOperator(operator):
         print("This operator is invalid. Try again!")
 
 
-# def getOperator():
-#     while True:
-#         operator = input("Enter your operator: ")
-#         if operator == 'q':
-#             print("You quit calculator!")
-#             sys.exit()
-#         elif operator in ('+', '-', '*', '/'):
-#             return operator
-#         else:
-#             print("This operator is invalid. Try again!")
-
-
 def again():
     while True:
         next_calculation = input("Do you want do next calculation? (yes/no): ")
@@ -116,24 +104,6 @@ def calculate():
         else:
             print("Something is wrong. Try again")
         again()
-
-
-# def calculate():
-#     while True:
-#         x = getNumber("X")
-#         operator = getOperator()
-#         y = getNumber("Y")
-#         if operator == '+':
-#             print(x, "+", y, "=", round((add(x, y)), 3))
-#         elif operator == '-':
-#             print(x, "-", y, "=", round((subtract(x, y)), 3))
-#         elif operator == '*':
-#             print(x, "*", y, "=", round((multiply(x, y)), 3))
-#         elif operator == '/':
-#             print(x, "/", y, "=", round((divide(x, y)), 3))
-#         else:
-#             print("Something is wrong. Try again")
-#         again()
 
 
 def main():
