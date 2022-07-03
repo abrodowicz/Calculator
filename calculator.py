@@ -23,15 +23,15 @@ Let's start!
 
 
 def add(x, y):
-    return x + y
+    return roundToThird(x + y)
 
 
 def subtract(x, y):
-    return x - y
+    return roundToThird(x - y)
 
 
 def multiply(x, y):
-    return x * y
+    return roundToThird(x * y)
 
 
 def divide(x, y):
@@ -40,8 +40,11 @@ def divide(x, y):
             print("The divisor must not be zero")
             again()
         else:
-            return x / y
+            return roundToThird(x / y)
 
+
+def roundToThird(x):
+    return round(x, 3)
 
 
 def getNumber(variable_alias: str) -> float:
@@ -57,16 +60,26 @@ def getNumber(variable_alias: str) -> float:
             print("This input is invalid. Try again!")
 
 
-def getOperator():
-    while True:
-        operator = input("Enter your operator: ")
-        if operator == 'q':
-            print("You quit calculator!")
-            sys.exit()
-        elif operator in ('+', '-', '*', '/'):
-            return operator
-        else:
-            print("This operator is invalid. Try again!")
+def getOperator(operator):
+    if operator == 'q':
+        print("You quit calculator!")
+        sys.exit()
+    elif operator in ('+', '-', '*', '/'):
+        return operator
+    else:
+        print("This operator is invalid. Try again!")
+
+
+# def getOperator():
+#     while True:
+#         operator = input("Enter your operator: ")
+#         if operator == 'q':
+#             print("You quit calculator!")
+#             sys.exit()
+#         elif operator in ('+', '-', '*', '/'):
+#             return operator
+#         else:
+#             print("This operator is invalid. Try again!")
 
 
 def again():
@@ -87,19 +100,40 @@ def again():
 def calculate():
     while True:
         x = getNumber("X")
-        operator = getOperator()
+        while True:
+            operator = getOperator(input("Enter your operator: "))
+            if operator is not None:
+                break
         y = getNumber("Y")
         if operator == '+':
-            print(x, "+", y, "=", round((add(x, y)), 3))
+            print(x, "+", y, "=", add(x, y))
         elif operator == '-':
-            print(x, "-", y, "=", round((subtract(x, y)), 3))
+            print(x, "-", y, "=", subtract(x, y))
         elif operator == '*':
-            print(x, "*", y, "=", round((multiply(x, y)), 3))
+            print(x, "*", y, "=", multiply(x, y))
         elif operator == '/':
-            print(x, "/", y, "=", round((divide(x, y)), 3))
+            print(x, "/", y, "=", divide(x, y))
         else:
             print("Something is wrong. Try again")
         again()
+
+
+# def calculate():
+#     while True:
+#         x = getNumber("X")
+#         operator = getOperator()
+#         y = getNumber("Y")
+#         if operator == '+':
+#             print(x, "+", y, "=", round((add(x, y)), 3))
+#         elif operator == '-':
+#             print(x, "-", y, "=", round((subtract(x, y)), 3))
+#         elif operator == '*':
+#             print(x, "*", y, "=", round((multiply(x, y)), 3))
+#         elif operator == '/':
+#             print(x, "/", y, "=", round((divide(x, y)), 3))
+#         else:
+#             print("Something is wrong. Try again")
+#         again()
 
 
 def main():
@@ -108,6 +142,7 @@ def main():
     calculate()
     return welcome_text
     return instruction_text
+    return calculator_input
 
 
 if __name__ == '__main__':

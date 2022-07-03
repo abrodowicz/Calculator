@@ -1,10 +1,10 @@
 import calculator
 import unittest
-
+from unittest.mock import Mock, patch
 
 class TestCalculator(unittest.TestCase):
 
-    #Check if calculator greet an user/ doesn't work :(
+    #Check if calculator greet an user
     def test_greeting_display(self):
         self.assertEqual(calculator.welcome(), "Hello! This is your calculator.")
 
@@ -22,15 +22,42 @@ Let's start!
     """)
 
     #Check operator validation- positive scenario
-
+    def test_operator_validation_1(self):
+        operator = calculator.getOperator("/")
+        self.assertEqual(operator, "/")
 
     #Check operator validation- negative scenario
+    def test_operator_validation_2(self):
+        operator = calculator.getOperator("m")
+        self.assertEqual(operator, None)
 
-
-    #Check if inputs can be decimal numbers
+    #Check input validation- positive scenarios: a) decimal number
     def test_inputs_validation_1(self):
-        result = calculator.add(m, n)
-        self.assertNotEqual(result, 10)
+        result = calculator.add(1.2, 3.4)
+        self.assertEqual(result, 4.6)
+
+    #Check input validation- positive scenarios: c) input with space
+    @patch("calculator.input")
+    @patch("calculator.print")
+    def test_inputs_validation_2(self, mock_print, mock_input):
+        mock_input.side_effect = ['1. 5', '+', '1. 4', 'no']
+        with self.assertRaises(SystemExit):
+            calculator.calculate()
+        mock_print.assert_called_with('Goodbye!')
+
+    #Check input validation- positive scenarios: d) input with coma
+    @patch("calculator.input")
+    @patch("calculator.print")
+    def test_inputs_validation_3(self, mock_print, mock_input):
+        mock_input.side_effect = ['1,5', '+', '1,5', 'no']
+        with self.assertRaises(SystemExit):
+            calculator.calculate()
+        mock_print.assert_called_with('Goodbye!')
+
+    #Check input validation- negative scenario
+    def test_inputs_validation_4(self):
+        with self.assertRaises(TypeError):
+            calculator.add("m", 2)
 
     #Check the addition of two positive integers- positive scenario
     def test_add_method_1(self):
@@ -119,9 +146,37 @@ Let's start!
 
     #Check if result is rounded to 3 decimals
     def test_rounding_result_method(self):
-        print(divide(1,3))
+        result = calculator.divide(1, 3)
+        self.assertEqual(result, 0.333)
 
+    #Check if user can exit calculator by typing “q” instead of proper operator
+    def test_exit_by_q_instead_of_operator(self):
+        with self.assertRaises(SystemExit):
+            calculator.getOperator('q')
 
-    #Check if user can exit calculator by typing “q”
+    #Check if user can exit calculator by typing “q” instead of proper first number input
+    @patch("calculator.input")
+    @patch("calculator.print")
+    def test_exit_by_q_instead_of_first_number(self, mock_print, mock_input):
+        mock_input.side_effect = ['q', '+', '4', 'no']
+        with self.assertRaises(SystemExit):
+            calculator.calculate()
+        mock_print.assert_called_with('You quit calculator!')
+
+    #Check if user can exit calculator by typing “q” instead of proper second number input
+    @patch("calculator.input")
+    @patch("calculator.print")
+    def test_exit_by_q_instead_of_second_number(self, mock_print, mock_input):
+        mock_input.side_effect = ['1', '+', 'q', 'no']
+        with self.assertRaises(SystemExit):
+            calculator.calculate()
+        mock_print.assert_called_with('You quit calculator!')
 
     #Check if calculator says goodbye to an user
+    @patch("calculator.input")
+    @patch("calculator.print")
+    def test_goodbye_2(self, mock_print, mock_input):
+        mock_input.side_effect = ['5', '+', '4', 'no']
+        with self.assertRaises(SystemExit):
+            calculator.calculate()
+        mock_print.assert_called_with('Goodbye!')
