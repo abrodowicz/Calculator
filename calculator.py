@@ -2,11 +2,13 @@ import sys
 
 
 def welcome():
-    print("Hello! This is your calculator.")
+    greeting_text = "Hello! This is your calculator."
+    print(greeting_text)
+    return greeting_text
 
 
 def instruction():
-    print("""
+    information_text = """
 This calculator works on two numbers.
 You can perform actions from list below:
 Adding-> +
@@ -15,19 +17,21 @@ Multiplying-> *
 Dividing-> /
 To quit the program enter 'q'
 Let's start!
-    """)
+    """
+    print(information_text)
+    return information_text
 
 
 def add(x, y):
-    return x + y
+    return roundToThird(x + y)
 
 
 def subtract(x, y):
-    return x - y
+    return roundToThird(x - y)
 
 
 def multiply(x, y):
-    return x * y
+    return roundToThird(x * y)
 
 
 def divide(x, y):
@@ -36,12 +40,16 @@ def divide(x, y):
             print("The divisor must not be zero")
             again()
         else:
-            return x / y
+            return roundToThird(x / y)
 
 
-def getNumber():
+def roundToThird(x):
+    return round(x, 3)
+
+
+def getNumber(variable_alias: str) -> float:
     while True:
-        number = (input("Enter your number: ")).replace(" ", "")
+        number = (input(f"Enter your number {variable_alias}: ")).replace(" ", "").replace(",", ".")
         if number == 'q':
             print("You quit calculator!")
             sys.exit()
@@ -52,29 +60,14 @@ def getNumber():
             print("This input is invalid. Try again!")
 
 
-def getOperator():
-    while True:
-        operator = input("Enter your operator: ")
-        if operator == 'q':
-            print("You quit calculator!")
-            sys.exit()
-        elif operator in ('+', '-', '*', '/'):
-            return operator
-        else:
-            print("This operator is invalid. Try again!")
-
-
-# def getSecondNumber():
-#     while True:
-#         secondNumber = input("Enter your second number: ")
-#         if secondNumber == 'q':
-#             print("You quit calculator!")
-#             sys.exit()
-#         try:
-#             secondNumber = float(secondNumber)
-#             return secondNumber
-#         except ValueError:
-#             print("This input is invalid. Try again!")
+def getOperator(operator):
+    if operator == 'q':
+        print("You quit calculator!")
+        sys.exit()
+    elif operator in ('+', '-', '*', '/'):
+        return operator
+    else:
+        print("This operator is invalid. Try again!")
 
 
 def again():
@@ -94,22 +87,33 @@ def again():
 
 def calculate():
     while True:
-        x = getNumber()
-        operator = getOperator()
-        y = getNumber()
+        x = getNumber("X")
+        while True:
+            operator = getOperator(input("Enter your operator: "))
+            if operator is not None:
+                break
+        y = getNumber("Y")
         if operator == '+':
-            print(x, "+", y, "=", round((add(x, y)), 3))
+            print(x, "+", y, "=", add(x, y))
         elif operator == '-':
-            print(x, "-", y, "=", round((subtract(x, y)), 3))
+            print(x, "-", y, "=", subtract(x, y))
         elif operator == '*':
-            print(x, "*", y, "=", round((multiply(x, y)), 3))
+            print(x, "*", y, "=", multiply(x, y))
         elif operator == '/':
-            print(x, "/", y, "=", round((divide(x, y)), 3))
+            print(x, "/", y, "=", divide(x, y))
         else:
             print("Something is wrong. Try again")
         again()
 
 
-welcome()
-instruction()
-calculate()
+def main():
+    welcome_text = welcome()
+    instruction_text = instruction()
+    calculate()
+    return welcome_text
+    return instruction_text
+    return calculator_input
+
+
+if __name__ == '__main__':
+    main()
